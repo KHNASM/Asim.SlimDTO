@@ -130,6 +130,23 @@ Khan.SlimDTO will:
   ```csharp
   var orderDto = CreateDTO<Order>().DropChildren();
 
+
+### 2.20 Add Custom Property to DTO
+
+- **Purpose**: Allow developers to add custom properties to the DTO after its creation, based on data from the original entity.
+- **Description**: The `AddProperty` method enables developers to dynamically add properties to a DTO. This can be used to calculate values, aggregate data, or add business-specific logic that doesn’t exist in the entity but is relevant to the DTO.
+- **Example**:
+  ```csharp
+  public async Task<List<OrderDto>> GetOrdersAsync()
+  {
+      var orders = await _context.Orders.ToListAsync();
+      var orderDtos = orders.Select(o => o.CreateDTO()   // Create DTO from Order
+                             .SkipChildren()           // Skip child entities like Products
+                             .AddProperty("TotalAmount", o => o.Products.Sum(p => p.Price)) // Add TotalAmount
+                             .ToList(); 
+      return orderDtos;
+  }
+
 ## 3. Non-Functional Requirements
 
 ### 3.1 Scalability
