@@ -76,8 +76,53 @@ Khan.SlimDTO will:
 
 ### 2.8 Logging and Debugging
 
+
 - Provide logging hooks for developers to monitor DTO creation and cache hits/misses.
 - Allow configurable verbosity through integration with popular logging frameworks (e.g., Serilog).
+
+### 2.9 Sub-Entity DTO Mapping (with EF Navigation Properties)
+
+- The system should handle navigation properties in entities and create corresponding DTOs for these sub-entities.
+- Ensure that child entities are included in the DTO by replacing the navigation property with its corresponding DTO.
+
+### 2.10 Skipping Child Entities (Selective DTO Creation)
+
+- Provide functionality to skip the creation of DTOs for specific child entities or navigation properties.
+- This can be controlled via flags or method parameters (e.g., `skipChildren: true`).
+
+### 2.11 Lazy Loading of Sub-Entities
+
+- Support lazy loading of child DTOs only when explicitly requested, preventing unnecessary DTO creation.
+
+### 2.12 Nested Entity DTO Creation (Deep DTO Mapping)
+
+- The system should support deep entity graphs and recursively generate DTOs for nested sub-entities.
+
+### 2.13 Handling Collections of Sub-Entities
+
+- Ensure correct handling of collections of related entities by generating DTOs for all elements in the collection.
+
+### 2.14 Excluding Specific Properties or Sub-Entities via Annotations
+
+- Allow developers to annotate properties or sub-entities for exclusion from DTOs using the `DTOPropertyAttribute`.
+
+### 2.15 Circular References
+
+- Implement mechanisms to detect and prevent circular references when generating DTOs for entities with circular relationships.
+
+### 2.16 Customizing DTO Creation Behavior
+
+- Provide extension points or event hooks that allow developers to customize the default DTO creation logic.
+
+### 2.17 Conditional DTO Creation Based on Entity State
+
+- Support conditional DTO creation based on the entity's state (e.g., new, updated, archived).
+
+### 2.18 Handling Complex Properties (e.g., Calculated Fields)
+
+- Support the transformation or calculation of complex properties before they are included in the DTO.
+
+
 
 ## 3. Non-Functional Requirements
 
