@@ -122,7 +122,13 @@ Khan.SlimDTO will:
 
 - Support the transformation or calculation of complex properties before they are included in the DTO.
 
+### 2.19 DropChildEntities Method
 
+- **Purpose**: This method allows developers to drop all child entities from the DTO by calling `DropChildren()` on the DTO creation result.
+- **Description**: When called on a generated DTO, `DropChildren()` should remove all child entities (i.e., navigation properties or related sub-entities) from the DTO, effectively skipping the transformation of child entities.
+- **Example**:
+  ```csharp
+  var orderDto = CreateDTO<Order>().DropChildren();
 
 ## 3. Non-Functional Requirements
 
